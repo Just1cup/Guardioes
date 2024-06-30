@@ -278,8 +278,7 @@ body, html {
 /* Media Queries */
 @media (max-width: 768px) {
 
-
-
+    
     .mainTitle {
         font-size: 2.5em;
     }
