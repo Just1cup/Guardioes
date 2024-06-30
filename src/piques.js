@@ -63,20 +63,21 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-// Function to dynamically set the viewport meta tag
 function setViewportMeta() {
-    let viewportContent = 'width=device-width, initial-scale=1.0, user-scalable=no';
+    let viewportContent;
 
-    // Detect the browser
     const userAgent = navigator.userAgent.toLowerCase();
-    const isEdge = userAgent.includes('edg'); // Detects Microsoft Edge
-    const isChrome = userAgent.includes('chrome') && !isEdge; // Detects Google Chrome but excludes Edge
+    const isEdge = userAgent.includes('edg'); 
+    const isChrome = userAgent.includes('chrome') && !isEdge; 
 
-    if (isChrome) {
+    if (isEdge) {
+        viewportContent = 'width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0';
+    } else if (isChrome) {
         viewportContent = 'width=device-width, initial-scale=1.1, user-scalable=no, maximum-scale=1.1, minimum-scale=1.1';
+    } else {
+        viewportContent = 'width=device-width, initial-scale=1.0, user-scalable=no';
     }
 
-    // Create or update the viewport meta tag
     let viewportMeta = document.querySelector('meta[name="viewport"]');
     if (!viewportMeta) {
         viewportMeta = document.createElement('meta');
@@ -86,5 +87,4 @@ function setViewportMeta() {
     viewportMeta.setAttribute('content', viewportContent);
 }
 
-// Set the viewport meta tag on page load
 document.addEventListener('DOMContentLoaded', setViewportMeta);

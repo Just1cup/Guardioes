@@ -102,15 +102,10 @@ function setViewportMeta() {
     const isChrome = userAgent.includes('chrome') && !isEdge; // Detects Google Chrome but excludes Edge
 
     if (isEdge) {
-        // Set for Edge
         viewportContent = 'width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0';
     } else if (isChrome) {
-        // Set for Chrome
         viewportContent = 'width=device-width, initial-scale=1.1, user-scalable=no, maximum-scale=1.1, minimum-scale=1.1';
-    } else {
-        // Default setting for other browsers
-        viewportContent = 'width=device-width, initial-scale=1.0, user-scalable=no';
-    }
+  
 
     // Create or update the viewport meta tag
     let viewportMeta = document.querySelector('meta[name="viewport"]');
@@ -122,3 +117,4 @@ function setViewportMeta() {
     viewportMeta.setAttribute('content', viewportContent);
 }
 document.addEventListener('DOMContentLoaded', setViewportMeta);
+}
