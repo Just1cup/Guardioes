@@ -59,25 +59,24 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    guardioesInstancia!.addEventListener("mouseover", () => { // Use non-null assertion operator
-        const hoveredSrc: string = guardioesInstancia!.src; // Use non-null assertion operator
+    guardioesInstancia!.addEventListener("mouseover", () => { 
+        const hoveredSrc: string = guardioesInstancia!.src;
         const hoveredImageData: ImageData | undefined = images.find(image => image.root === hoveredSrc);
 
         if (hoveredImageData) {
             imageName!.textContent = hoveredImageData.name; // Use non-null assertion operator
-            imageDescription!.textContent = hoveredImageData.description; // Use non-null assertion operator
+            imageDescription!.textContent = hoveredImageData.description; 
         }
     });
 
     function updateLayerContent(): void {
         const currentImageData: ImageData | undefined = images[currentIndex];
         if (currentImageData) {
-            imageName!.textContent = currentImageData.name; // Use non-null assertion operator
-            imageDescription!.textContent = currentImageData.description; // Use non-null assertion operator
+            imageName!.textContent = currentImageData.name; 
+            imageDescription!.textContent = currentImageData.description; 
         }
     }
 
-    // Initially populate layer content with first image's details
     updateLayerContent();
 });
 
@@ -87,9 +86,41 @@ document.addEventListener('wheel', (event: WheelEvent) => {
     }
 }, { passive: false });
 
-// Prevent zoom with Ctrl + Plus/Minus/Zero
 document.addEventListener('keydown', (event: KeyboardEvent) => {
     if (event.ctrlKey && (event.key === '+' || event.key === '-' || event.key === '0')) {
         event.preventDefault();
     }
 });
+
+// Function to dynamically set the viewport meta tag
+function setViewportMeta() {
+    let viewportContent: string;
+
+    // Detect the browser
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isEdge = userAgent.includes('edg'); // Detects Microsoft Edge
+    const isChrome = userAgent.includes('chrome') && !isEdge; // Detects Google Chrome but excludes Edge
+
+    if (isEdge) {
+        // Set for Edge
+        viewportContent = 'width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0';
+    } else if (isChrome) {
+        // Set for Chrome
+        viewportContent = 'width=device-width, initial-scale=1.1, user-scalable=no, maximum-scale=1.1, minimum-scale=1.1';
+    } else {
+        // Default setting for other browsers
+        viewportContent = 'width=device-width, initial-scale=1.0, user-scalable=no';
+    }
+
+    // Create or update the viewport meta tag
+    let viewportMeta = document.querySelector('meta[name="viewport"]');
+    if (!viewportMeta) {
+        viewportMeta = document.createElement('meta');
+        viewportMeta.name = 'viewport';
+        document.head.appendChild(viewportMeta);
+    }
+    viewportMeta.setAttribute('content', viewportContent);
+}
+
+// Set the viewport meta tag on page load
+document.addEventListener('DOMContentLoaded', setViewportMeta);

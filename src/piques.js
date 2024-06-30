@@ -21,10 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const changeImage = () => {
         currentIndex = (currentIndex + 1) % images.length;
-        imageElement.src = images[currentIndex].root; // Use non-null assertion operator since TypeScript doesn't know the result of the querySelector
-        updateLayerContent(); // Call function to update layer content
+        imageElement.src = images[currentIndex].root;
+        updateLayerContent(); 
     };
-    setInterval(changeImage, 5000); // Change image every 5 seconds
+    setInterval(changeImage, 5000); 
     const guardioesInstancia = document.querySelector(".guardioesInstancia");
     const imageName = document.querySelector(".image-name");
     const imageDescription = document.querySelector(".image-description");
@@ -33,32 +33,62 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
     guardioesInstancia.addEventListener("mouseover", () => {
-        const hoveredSrc = guardioesInstancia.src; // Use non-null assertion operator
+        const hoveredSrc = guardioesInstancia.src; 
         const hoveredImageData = images.find(image => image.root === hoveredSrc);
         if (hoveredImageData) {
-            imageName.textContent = hoveredImageData.name; // Use non-null assertion operator
-            imageDescription.textContent = hoveredImageData.description; // Use non-null assertion operator
+            imageName.textContent = hoveredImageData.name; 
+            imageDescription.textContent = hoveredImageData.description; 
         }
     });
     function updateLayerContent() {
         const currentImageData = images[currentIndex];
         if (currentImageData) {
-            imageName.textContent = currentImageData.name; // Use non-null assertion operator
-            imageDescription.textContent = currentImageData.description; // Use non-null assertion operator
+            imageName.textContent = currentImageData.name;
+            imageDescription.textContent = currentImageData.description; 
         }
     }
-    // Initially populate layer content with first image's details
+s
     updateLayerContent();
 });
+
 
 document.addEventListener('wheel', (event) => {
     if (event.ctrlKey) {
         event.preventDefault();
     }
 }, { passive: false });
-// Prevent zoom with Ctrl + Plus/Minus/Zero
+
 document.addEventListener('keydown', (event) => {
     if (event.ctrlKey && (event.key === '+' || event.key === '-' || event.key === '0')) {
         event.preventDefault();
     }
 });
+
+
+function setViewportMeta() {
+    let viewportContent;
+    // Detect the browser
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isEdge = userAgent.includes('edg'); 
+    const isChrome = userAgent.includes('chrome') && !isEdge; 
+    if (isEdge) {
+        viewportContent = 'width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0';
+    }
+    else if (isChrome) {
+        viewportContent = 'width=device-width, initial-scale=1.1, user-scalable=no, maximum-scale=1.1, minimum-scale=1.1';
+    }
+    else {
+        viewportContent = 'width=device-width, initial-scale=1.0, user-scalable=no';
+    }
+
+    let viewportMeta = document.querySelector('meta[name="viewport"]');
+    if (!viewportMeta) {
+        viewportMeta = document.createElement('meta');
+        viewportMeta.name = 'viewport';
+        document.head.appendChild(viewportMeta);
+    }
+    viewportMeta.setAttribute('content', viewportContent);
+}
+// Set the viewport meta tag on page load
+document.addEventListener('DOMContentLoaded', setViewportMeta);
+
