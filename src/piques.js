@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
             imageDescription.textContent = currentImageData.description; 
         }
     }
-s
     updateLayerContent();
 });
 
