@@ -1,0 +1,55 @@
+
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-Start;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: transparent;
+    transition: background-color 0;
+    margin-top: 20px;
+    box-shadow: 9px 5px 21px -3px rgba(0, 0, 0, 0.1);
+}
+
+button img {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+}
+
+button .mode-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+button.light-mode {
+    color: black;
+}
+
+button.dark-mode {
+    background-color: #33A8DB;
+    color: white;
+}
+
+button.dark-mode .mode-text {
+    color: white;
+}
+
+button.light-mode .mode-text {
+    color: black;
+}
+
+.dark-mode button img {
+    filter: invert(1);
+}
+
+@media (max-width: 768px) {
+
+    button{
+        margin-top: 90px;
+    }
+}
