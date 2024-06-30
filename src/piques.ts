@@ -93,28 +93,19 @@ document.addEventListener('keydown', (event: KeyboardEvent) => {
 });
 
 // Function to dynamically set the viewport meta tag
-function setViewportMeta() {
-    let viewportContent: string;
-
+function setZoomLevel(): void {
     // Detect the browser
-    const userAgent = navigator.userAgent.toLowerCase();
-    const isEdge = userAgent.includes('edg'); // Detects Microsoft Edge
-    const isChrome = userAgent.includes('chrome') && !isEdge; // Detects Google Chrome but excludes Edge
+    const userAgent: string = navigator.userAgent.toLowerCase();
+    const isChrome: boolean = userAgent.includes('chrome');
 
-    if (isEdge) {
-        viewportContent = 'width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0';
-    } else if (isChrome) {
-        viewportContent = 'width=device-width, initial-scale=1.1, user-scalable=no, maximum-scale=1.1, minimum-scale=1.1';
-  
-
-    // Create or update the viewport meta tag
-    let viewportMeta = document.querySelector('meta[name="viewport"]');
-    if (!viewportMeta) {
-        viewportMeta = document.createElement('meta');
-        viewportMeta.name = 'viewport';
-        document.head.appendChild(viewportMeta);
+    // Set zoom level based on the browser
+    if (isChrome) {
+        // Adjust zoom level for Chrome
+        (document.body as any).style.zoom = '110%'; // 1.1 times zoom (110%)
+    } else {
+        // Default zoom level for other browsers
+        (document.body as any).style.zoom = '100%'; // Default zoom (100%)
     }
-    viewportMeta.setAttribute('content', viewportContent);
 }
-document.addEventListener('DOMContentLoaded', setViewportMeta);
-}
+
+document.addEventListener('DOMContentLoaded', setZoomLevel);

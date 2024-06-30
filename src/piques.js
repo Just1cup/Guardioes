@@ -63,28 +63,18 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-function setViewportMeta() {
-    let viewportContent;
+function setZoomLevel() {
 
     const userAgent = navigator.userAgent.toLowerCase();
-    const isEdge = userAgent.includes('edg'); 
-    const isChrome = userAgent.includes('chrome') && !isEdge; 
+    const isChrome = userAgent.includes('chrome');
 
-    if (isEdge) {
-        viewportContent = 'width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0';
-    } else if (isChrome) {
-        viewportContent = 'width=device-width, initial-scale=1.1, user-scalable=no, maximum-scale=1.1, minimum-scale=1.1';
+    if (isChrome) {
+    
+        document.body.style.zoom = '110%'; 
     } else {
-        viewportContent = 'width=device-width, initial-scale=1.0, user-scalable=no';
+        // Default zoom level for other browsers
+        document.body.style.zoom = '100%'; 
     }
-
-    let viewportMeta = document.querySelector('meta[name="viewport"]');
-    if (!viewportMeta) {
-        viewportMeta = document.createElement('meta');
-        viewportMeta.name = 'viewport';
-        document.head.appendChild(viewportMeta);
-    }
-    viewportMeta.setAttribute('content', viewportContent);
 }
 
-document.addEventListener('DOMContentLoaded', setViewportMeta);
+document.addEventListener('DOMContentLoaded', setZoomLevel);
