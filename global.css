@@ -278,9 +278,7 @@ body, html {
 /* Media Queries */
 @media (max-width: 768px) {
 
-    body{
-        overflow-y: hidden;
-    }
+
 
     .mainTitle {
         font-size: 2.5em;
