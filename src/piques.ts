@@ -81,10 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateLayerContent();
 });
 
-
-import { KeyboardEvent, WheelEvent } from 'react';
-
-// Prevent zoom with Ctrl + Scroll
 document.addEventListener('wheel', (event: WheelEvent) => {
     if (event.ctrlKey) {
         event.preventDefault();
