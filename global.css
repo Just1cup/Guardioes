@@ -9,7 +9,7 @@ body, html {
     ::-webkit-scrollbar {
         display: none;
     }
-    
+    background: #1c2128;
 }
 
 #colorTitle {
