@@ -236,6 +236,9 @@ body, html {
     width: 100%;
 }
 
+.servicesTitle{
+    background: #1c2128;
+}
 
 .placesSection {
     display: flex;
