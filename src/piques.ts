@@ -121,6 +121,4 @@ function setViewportMeta() {
     }
     viewportMeta.setAttribute('content', viewportContent);
 }
-
-// Set the viewport meta tag on page load
 document.addEventListener('DOMContentLoaded', setViewportMeta);
