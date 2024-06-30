@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="button.css">
+    <title>Piques</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <div class="headerText">
+                <h1 class="mainTitle">Piques  <span id="colorTitle">&</span> Niques</h1>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="theme-toggle">
+                <button  id="themeToggleBtn"  class="light-mode">
+                    <span class="mode-text">DAYMODE</span>
+                    <img id="themeToggleImg" src="./Assets/Sun.png" alt="Toggle Theme">
+                </button>
+                    
+            </div>
+        </div>
+    </header>
+    <section class="mainSection bg-color">
+        <section class="guardioesSection">
+            <h2 class="subTitle">Guardiões</h2>
+            <div class="image-overlay"></div>
+            <div class="guardioesImg">
+                <img class="guardioesInstancia" src="./Assets/Guardioes.JPG" alt="">
+                <div class="layer">
+                    <h2 class="image-name"></h2>
+                    <p class="image-description"></p>
+                </div>
+            </div>
+        </section>
+
+        <div class="servicesTitle">
+            <h1 id="placesTitle">Atividades</h1>
+        </div>
+    
+        <section class="placesSection">
+        <div class="servicesSection">
+            <div class="servicesModel">
+                <div class="servicesModelDetails">
+                    <h2 class="servicesTitle">Piques e Talks</h2>
+                    <p class="servicesDetails">Onde os guardiões discutem diversos temas, frequentemente ocorre durante roles.</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="servicesSection">
+            <div class="servicesModel">
+                <div class="servicesModelDetails">
+                    <h2 class="servicesTitle">Piques e Niques</h2>
+                    <p class="servicesDetails">São definidos dias especificos onde todos se encontram.</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="servicesSection">
+            <div class="servicesModel">
+                <div class="servicesModelDetails">
+                    <h2 class="servicesTitle">Piques e Kombi</h2>
+                    <p class="servicesDetails"> Um projeto ambicioso, mas ainda em fase de desenovlvimento.</p>
+                </div>
+            </div>
+
+        </div>
+        </section>
+    </section>
+
+    <script src="src/piques.js"></script>
+    <script src="src/theme.js"></script>
+</body>
+</html>
