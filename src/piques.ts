@@ -80,3 +80,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initially populate layer content with first image's details
     updateLayerContent();
 });
+
+
+import { KeyboardEvent, WheelEvent } from 'react';
+
+// Prevent zoom with Ctrl + Scroll
+document.addEventListener('wheel', (event: WheelEvent) => {
+    if (event.ctrlKey) {
+        event.preventDefault();
+    }
+}, { passive: false });
+
+// Prevent zoom with Ctrl + Plus/Minus/Zero
+document.addEventListener('keydown', (event: KeyboardEvent) => {
+    if (event.ctrlKey && (event.key === '+' || event.key === '-' || event.key === '0')) {
+        event.preventDefault();
+    }
+});
